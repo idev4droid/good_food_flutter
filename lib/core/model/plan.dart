@@ -1,12 +1,18 @@
-
+import 'package:good_food/core/model/serving.dart';
 
 class Plan {
-  final String code;
-  final String image;
-  final String name;
-  final String description;
-  final int order;
-  final String lowestPricePerPortion;
+  int nbRecipes;
+  List<Serving> servings;
+  Plan({this.nbRecipes, this.servings});
 
+  Plan.fromJson(Map<String, dynamic> json) {
+    List<dynamic> servingsJson = json["servings"];
+    List<Serving> servingsConverted = new List();
+    servingsJson.forEach((servingJson) {
+      servingsConverted.add(Serving.fromJson(servingJson));
+    });
+    servings = servingsConverted;
 
+    nbRecipes = json["nb_recipes"];
+  }
 }
