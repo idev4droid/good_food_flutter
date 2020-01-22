@@ -1,4 +1,5 @@
 import 'package:good_food/core/model/plan.dart';
+import 'package:good_food/core/model/recipe.dart';
 
 class CategoryPlan {
   String code;
@@ -10,6 +11,7 @@ class CategoryPlan {
   List<Plan> plans;
   int defaultRecipes;
   int defaultServings;
+  List<Recipe> recipes;
   CategoryPlan({this.code, this.image, this.name, this.description, this.order, this.lowestPricePerPortion, this.plans, this.defaultRecipes, this.defaultServings});
 
   CategoryPlan.fromJson(Map<String, dynamic> json) {

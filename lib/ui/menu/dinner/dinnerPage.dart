@@ -1,34 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:good_food/core/enums/viewState.dart';
+import 'package:good_food/core/model/categoryPlan.dart';
+import 'package:good_food/core/viewmodel/dinnerViewModel.dart';
+import 'package:good_food/ui/base/baseView.dart';
 
 class DinnerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-        primary: false,
-        padding: const EdgeInsets.all(20),
-        crossAxisCount: 2,
-        children: <Widget>[
-          DinnerMenuItem(Text("Sup 1")),
-          DinnerMenuItem(Text("Sup 2")),
-          DinnerMenuItem(Text("Sup 3")),
-          DinnerMenuItem(Text("Sup 4")),
-          DinnerMenuItem(Text("Sup 5")),
-          DinnerMenuItem(Text("Sup 6"))
-        ],);
+    return BaseView<DinnerViewModel>(
+        onModelReady: (model) => model.fetchDinnerPlans(),
+        builder: (context, model, child) => model.state == ViewState.Busy
+            ? buildViewStateBusyWidget()
+            : buildViewStateIdleWidget(model));
   }
 
+  Widget buildViewStateIdleWidget(DinnerViewModel model) {
+    return ListView(
+      children: <Widget>[
+        DinnerMenuItem(model.dinnerPlans.classic),
+        DinnerMenuItem(model.dinnerPlans.clean15)
+      ],
+    );
+  }
+
+  Widget buildViewStateBusyWidget() =>
+      Center(child: CircularProgressIndicator());
 }
 
 class DinnerMenuItem extends StatelessWidget {
-  const DinnerMenuItem(this.text);
+  const DinnerMenuItem(this.categoryPlan);
 
-  final Text text;
+  final CategoryPlan categoryPlan;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8),
-      child: text,
+      child: Text(categoryPlan.code),
     );
   }
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:good_food/locator.dart';
 import 'package:good_food/ui/home/homePage.dart';
 import 'package:good_food/ui/theme/theme.dart';
 
-void main() => runApp(App());
+void main() {
+  setupLocator();
+  runApp(App());
+}
 
 class App extends StatelessWidget {
   @override
