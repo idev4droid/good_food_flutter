@@ -25,7 +25,10 @@ class DinnerPage extends StatelessWidget {
           child: Align(
             alignment: Alignment.center,
             child: Text("WHAT'S ON THE MENU THIS WEEK?",
-                style: TextStyle(color: PRIMARY_COLOR, fontSize: 20.0, fontWeight: FontWeight.bold)),
+                style: TextStyle(
+                    color: PRIMARY_COLOR,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold)),
           ),
         ),
         DinnerMenuItem(model.dinnerPlans.classic),
@@ -43,6 +46,7 @@ class DinnerPage extends StatelessWidget {
 
 class DinnerMenuItem extends StatefulWidget {
   final CategoryPlan categoryPlan;
+
   const DinnerMenuItem(this.categoryPlan);
 
   DinnerMenuItemState createState() => DinnerMenuItemState(categoryPlan);
@@ -53,9 +57,10 @@ class DinnerMenuItemState extends State<DinnerMenuItem> {
   var recipes;
   var cardAspectRatio = 12.0 / 16.0;
   var currentPage;
+
   DinnerMenuItemState(this.categoryPlan) {
-     recipes = categoryPlan.recipes;
-     currentPage = recipes.length - 1.0;
+    recipes = categoryPlan.recipes;
+    currentPage = recipes.length - 1.0;
   }
 
   PageController pageController;
@@ -100,8 +105,22 @@ class DinnerMenuItemState extends State<DinnerMenuItem> {
                   style: TextStyle(color: TEXT_COLOR, fontSize: 15.0)),
             ),
           ),
-          CardScrollWidget(
-              currentPage, cardAspectRatio, recipes, DinnerScrollChildWidget()),
+          Stack(
+            children: <Widget>[
+              CardScrollWidget(currentPage, cardAspectRatio, recipes,
+                  DinnerScrollChildWidget()),
+              Positioned.fill(
+                child: PageView.builder(
+                  itemCount: recipes.length,
+                  controller: pageController,
+                  reverse: true,
+                  itemBuilder: (context, index) {
+                    return Container();
+                  },
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
