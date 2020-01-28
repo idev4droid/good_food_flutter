@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "95197285978",
+    "firebase_url": "https://goodfood-ae71c.firebaseio.com",
+    "project_id": "goodfood-ae71c",
+    "storage_bucket": "goodfood-ae71c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95197285978:android:e46e8506a7dcef7f815263",
+        "android_client_info": {
+          "package_name": "com.idev4droid.good_food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95197285978-l6mbahdb4mguh2pkbuhfed5hchu5s3hp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.idev4droid.good_food",
+            "certificate_hash": "4ea51360549639b3c24584e6561558fe3e7cb84c"
+          }
+        },
+        {
+          "client_id": "95197285978-462nsrtiaquo6il2md4aeejvgn8thk2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDas2Gy_R0gl3owI0O85bHdsLscySTlCKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "95197285978-462nsrtiaquo6il2md4aeejvgn8thk2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
