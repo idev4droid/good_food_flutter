@@ -30,7 +30,8 @@ class DinnerScrollChildWidget extends CardScrollChildWidget {
                         image: imageProvider, fit: BoxFit.cover),
                   ),
                 ),
-                placeholder: (context, url) => CircularProgressIndicator(),
+                placeholder: (context, url) => SizedBox(
+                    width: 30, height: 30, child: Center(child: CircularProgressIndicator())),
               ),
               buildTilesAndTitle(recipe)
             ],

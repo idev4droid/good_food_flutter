@@ -3,6 +3,7 @@ import 'package:good_food/core/enums/viewState.dart';
 import 'package:good_food/core/model/categoryPlan.dart';
 import 'package:good_food/core/viewmodel/dinnerViewModel.dart';
 import 'package:good_food/ui/base/baseView.dart';
+import 'package:good_food/ui/menu/dinner/dinnerDetailPage.dart';
 import 'package:good_food/ui/menu/dinner/dinnerScrollChildWidget.dart';
 import 'package:good_food/ui/theme/theme.dart';
 import 'package:good_food/ui/toolbox/cardScrollWidget.dart';
@@ -107,8 +108,18 @@ class DinnerMenuItemState extends State<DinnerMenuItem> {
           ),
           Stack(
             children: <Widget>[
-              CardScrollWidget(currentPage, cardAspectRatio, recipes,
-                  DinnerScrollChildWidget()),
+              SingleChildScrollView(
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DinnerDetailPage()),
+                    );
+                  },
+                  child: CardScrollWidget(currentPage, cardAspectRatio, recipes,
+                      DinnerScrollChildWidget()),
+                ),
+              ),
               Positioned.fill(
                 child: PageView.builder(
                   itemCount: recipes.length,
