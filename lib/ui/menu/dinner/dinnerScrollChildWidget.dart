@@ -27,8 +27,7 @@ class DinnerScrollChildWidget extends CardScrollChildWidget {
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover),
+                        image: imageProvider, fit: BoxFit.cover),
                   ),
                 ),
                 placeholder: (context, url) => CircularProgressIndicator(),
@@ -43,13 +42,10 @@ class DinnerScrollChildWidget extends CardScrollChildWidget {
 
   Widget buildTilesAndTitle(Recipe recipe) {
     if (recipe.isEasyPrep) {
-      return Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            buildEasyPrepTile(recipe),
-            buildTitlesWithButton(recipe)
-          ]
-      );
+      return Stack(fit: StackFit.expand, children: <Widget>[
+        buildEasyPrepTile(recipe),
+        buildTitlesWithButton(recipe)
+      ]);
     } else {
       return buildTitlesWithButton(recipe);
     }
@@ -60,14 +56,19 @@ class DinnerScrollChildWidget extends CardScrollChildWidget {
       alignment: Alignment.topLeft,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container (
+        child: Container(
           decoration: BoxDecoration(
-            color: PRIMARY_COLOR,
-            border: Border.all(color: Colors.white, width: 2.0)
-          ),
+              color: PRIMARY_COLOR,
+              border: Border.all(color: Colors.white, width: 2.0)),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3.0),
-            child: Text("EASY\nPREP", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Colors.white),),
+            child: Text(
+              "EASY\nPREP",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                  color: Colors.white),
+            ),
           ),
         ),
       ),
@@ -76,53 +77,49 @@ class DinnerScrollChildWidget extends CardScrollChildWidget {
 
   Align buildTitlesWithButton(Recipe recipe) {
     return Align(
-              alignment: Alignment.bottomLeft,
+      alignment: Alignment.bottomLeft,
+      child: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.transparent, Colors.black87])),
+        padding: EdgeInsets.only(top: 25.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
+              child: Text(recipe.title,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold)),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(recipe.title2,
+                  style: TextStyle(
+                      color: Colors.white.withAlpha(235), fontSize: 14.0)),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 12.0, bottom: 12.0),
               child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 8.0),
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Colors.transparent, Colors.black87])),
-                padding: EdgeInsets.only(top: 25.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 2.0),
-                      child: Text(recipe.title,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(recipe.title2,
-                          style: TextStyle(
-                              color: Colors.white.withAlpha(235),
-                              fontSize: 14.0)),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 12.0, bottom: 12.0),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 22.0, vertical: 8.0),
-                        decoration: BoxDecoration(
-                            color: PRIMARY_COLOR,
-                            borderRadius: BorderRadius.circular(20.0)),
-                        child: Text("Order this recipe",
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                    )
-                  ],
-                ),
+                    color: PRIMARY_COLOR,
+                    borderRadius: BorderRadius.circular(20.0)),
+                child: Text("Order this recipe",
+                    style: TextStyle(color: Colors.white)),
               ),
-            );
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
