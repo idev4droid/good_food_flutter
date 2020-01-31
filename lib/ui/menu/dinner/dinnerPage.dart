@@ -85,55 +85,52 @@ class DinnerMenuItemState extends State<DinnerMenuItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(categoryPlan.name,
-                  style: TextStyle(color: PRIMARY_COLOR, fontSize: 20.0)),
-            ),
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(categoryPlan.name,
+                style: TextStyle(color: PRIMARY_COLOR, fontSize: 20.0)),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(categoryPlan.description,
-                  style: TextStyle(color: TEXT_COLOR, fontSize: 15.0)),
-            ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(categoryPlan.description,
+                style: TextStyle(color: TEXT_COLOR, fontSize: 15.0)),
           ),
-          Stack(
-            children: <Widget>[
-              SingleChildScrollView(
-                child: FlatButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => DinnerDetailPage()),
-                    );
-                  },
-                  child: CardScrollWidget(currentPage, cardAspectRatio, recipes,
-                      DinnerScrollChildWidget()),
-                ),
+        ),
+        FlatButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DinnerDetailPage()),
+            );
+          },
+          child: Text("TEST ME PLEASE"),
+        ),
+        Stack(
+          children: <Widget>[
+            SingleChildScrollView(
+              child: CardScrollWidget(currentPage, cardAspectRatio, recipes,
+                  DinnerScrollChildWidget()),
+            ),
+            Positioned.fill(
+              child: PageView.builder(
+                itemCount: recipes.length,
+                controller: pageController,
+                reverse: true,
+                itemBuilder: (context, index) {
+                  return Container();
+                },
               ),
-              Positioned.fill(
-                child: PageView.builder(
-                  itemCount: recipes.length,
-                  controller: pageController,
-                  reverse: true,
-                  itemBuilder: (context, index) {
-                    return Container();
-                  },
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
+            )
+          ],
+        ),
+      ],
     );
   }
 }

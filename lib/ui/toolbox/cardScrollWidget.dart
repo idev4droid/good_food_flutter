@@ -14,7 +14,8 @@ class CardScrollWidget extends StatelessWidget {
   final padding = 20.0;
   final verticalInset = 20.0;
 
-  CardScrollWidget(this.currentPage, this.cardAspectRatio, this.children, this.widget) {
+  CardScrollWidget(this.currentPage, this.cardAspectRatio, this.children,
+      this.widget) {
     widgetAspectRatio = cardAspectRatio * 1.2;
   }
 
@@ -31,7 +32,8 @@ class CardScrollWidget extends StatelessWidget {
         for (var i = 0; i < children.length; i++) {
           var delta = i - currentPage;
           bool isOnRight = delta > 0;
-          double start = calculateStartPosition(primaryCardLeft, horizontalInset, delta, isOnRight);
+          double start = calculateStartPosition(
+              primaryCardLeft, horizontalInset, delta, isOnRight);
           cardList.add(makeCardItem(delta, start, context, i));
         }
         return Stack(
@@ -41,22 +43,21 @@ class CardScrollWidget extends StatelessWidget {
     );
   }
 
-  Positioned makeCardItem(num delta, double start, BuildContext context, int i) {
+  Positioned makeCardItem(num delta, double start, BuildContext context,
+      int i) {
     var cardItem = Positioned.directional(
-      top: padding + verticalInset * max(-delta, 0.0),
-      bottom: padding + verticalInset * max(-delta, 0.0),
-      start: start,
-      textDirection: TextDirection.rtl,
-      child: widget.buildMe(context, children[i], cardAspectRatio)
-    );
+        top: padding + verticalInset * max(-delta, 0.0),
+        bottom: padding + verticalInset * max(-delta, 0.0),
+        start: start,
+        textDirection: TextDirection.rtl,
+        child: widget.buildMe(context, children[i], cardAspectRatio));
     return cardItem;
   }
 
-  double calculateStartPosition(double primaryCardLeft, double horizontalInset, num delta, bool isOnRight) {
+  double calculateStartPosition(double primaryCardLeft, double horizontalInset,
+      num delta, bool isOnRight) {
     var start = padding +
-        max(
-            primaryCardLeft -
-                horizontalInset * -delta * (isOnRight ? 15 : 1),
+        max(primaryCardLeft - horizontalInset * -delta * (isOnRight ? 15 : 1),
             0.0);
     return start;
   }

@@ -7,24 +7,23 @@ class HomePage extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _HomePageState();
   }
-
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  int selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  DinnerPage _dinnerPage = new DinnerPage();
+  DinnerPage dinnerPage = new DinnerPage();
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectedIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     List<Widget> _widgetOptions = <Widget>[
-      _dinnerPage,
+      dinnerPage,
       Text(
         'Index 1: FAQ',
         style: optionStyle,
@@ -36,8 +35,8 @@ class _HomePageState extends State<HomePage> {
     ];
 
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: Container(
+        child: _widgetOptions.elementAt(selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -54,7 +53,7 @@ class _HomePageState extends State<HomePage> {
             title: Text('PROFILE'),
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: selectedIndex,
         selectedItemColor: PRIMARY_COLOR,
         onTap: _onItemTapped,
       ),
