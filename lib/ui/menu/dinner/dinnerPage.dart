@@ -57,7 +57,7 @@ class DinnerMenuItemState extends State<DinnerMenuItem> {
   final CategoryPlan categoryPlan;
   var recipes;
   var cardAspectRatio = 12.0 / 16.0;
-  var currentPage;
+  double currentPage;
 
   DinnerMenuItemState(this.categoryPlan) {
     recipes = categoryPlan.recipes;
@@ -103,15 +103,6 @@ class DinnerMenuItemState extends State<DinnerMenuItem> {
                 style: TextStyle(color: TEXT_COLOR, fontSize: 15.0)),
           ),
         ),
-        FlatButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => DinnerDetailPage()),
-            );
-          },
-          child: Text("TEST ME PLEASE"),
-        ),
         Stack(
           children: <Widget>[
             SingleChildScrollView(
@@ -124,7 +115,16 @@ class DinnerMenuItemState extends State<DinnerMenuItem> {
                 controller: pageController,
                 reverse: true,
                 itemBuilder: (context, index) {
-                  return Container();
+                  return Container(
+                    child: FlatButton(onPressed: () {
+                      var recipe = recipes[currentPage.toInt()];
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>
+                            DinnerDetailPage(recipe)),
+                      );
+                    }),
+                  );
                 },
               ),
             )

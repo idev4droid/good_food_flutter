@@ -114,13 +114,8 @@ class DinnerScrollChildWidget extends CardScrollChildWidget {
                 decoration: BoxDecoration(
                     color: PRIMARY_COLOR,
                     borderRadius: BorderRadius.circular(20.0)),
-                child: MaterialButton(
-                  onPressed: () {
-                    print('GOT CLICKED');
-                  },
-                  child: Text("Order this recipe",
-                      style: TextStyle(color: Colors.white)),
-                ),
+                child: Text("Order this recipe",
+                    style: TextStyle(color: Colors.white)),
               ),
             )
           ],

@@ -18,4 +18,4 @@ final PRIMARY_MATERIAL_COLOR = MaterialColor(
     },
 );
 const SECONDARY_COLOR = const Color(0xffe8a459);
-const TEXT_COLOR = const Color(0xff7a7c7b);
+const TEXT_COLOR = const Color(0xff7b7b7b);
